@@ -6,16 +6,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Gear {
-    int chainring;
-    int cog;
-    int rim;
-    float tire;
+    double chainring;
+    double cog;
+    Wheel wheel;
 
     public double getRatio() {
-        return (double) getChainring() / (double) getCog();
+        return getChainring() / getCog();
     }
 
     public double getGearInches() {
-        return getRatio() * (getRim() + getTire() * 2);
+        return getRatio() * wheel.getDiameter();
     }
 }
