@@ -7,7 +7,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class GearTest {
     private static final Wheel wheel = new Wheel(26, 2);
-    private static final Gear gear = new Gear(52, 11, wheel);
+    private static final Gear gear = Gear.builder().chainring(52.0).cog(11.0).wheel(wheel).build();
 
     @Test
     @DisplayName("chainring 과 cog에 따라 기어비를 반환한다")
@@ -25,5 +25,16 @@ class GearTest {
         double gearInches = gear.getGearInches();
         // then
         then(gearInches).isEqualTo((52.0/11.0) * (26 + 4));
+    }
+
+    @Test
+    @DisplayName("Gear#builder default value test")
+    void builderTest() {
+        // when
+        Gear gear = Gear.builder().wheel(wheel).build();
+        // then
+        then(gear)
+                .hasFieldOrPropertyWithValue("chainring", 40.0)
+                .hasFieldOrPropertyWithValue("cog", 18.0);
     }
 }
