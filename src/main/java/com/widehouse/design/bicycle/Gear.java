@@ -15,6 +15,10 @@ public class Gear {
     }
 
     public double getGearInches() {
-        return getRatio() * wheel.getDiameter();
+        return getRatio() * getDiameter();
+    }
+
+    private double getDiameter() {
+        return wheel.getDiameter();
     }
 }
