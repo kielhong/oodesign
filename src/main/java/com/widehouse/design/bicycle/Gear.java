@@ -2,6 +2,9 @@ package com.widehouse.design.bicycle;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.apache.commons.lang3.ObjectUtils;
+
+import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 
 @Getter
 public class Gear {
@@ -11,8 +14,8 @@ public class Gear {
 
     @Builder
     public Gear(Double chainring, Double cog, Wheel wheel) {
-        this.chainring = chainring == null ? 40 : chainring;
-        this.cog = cog == null ? 18 : cog;
+        this.chainring = defaultIfNull(chainring, 40.0);
+        this.cog = defaultIfNull(cog, 18.0);
         this.wheel = wheel;
     }
 
