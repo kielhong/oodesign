@@ -2,7 +2,6 @@ package com.widehouse.design.bicycle;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.apache.commons.lang3.ObjectUtils;
 
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 
@@ -10,10 +9,10 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 public class Gear {
     double chainring;
     double cog;
-    Wheel wheel;
+    Diameterizable wheel;
 
     @Builder
-    public Gear(Double chainring, Double cog, Wheel wheel) {
+    public Gear(Double chainring, Double cog, Diameterizable wheel) {
         this.chainring = defaultIfNull(chainring, 40.0);
         this.cog = defaultIfNull(cog, 18.0);
         this.wheel = wheel;
@@ -28,6 +27,6 @@ public class Gear {
     }
 
     private double getDiameter() {
-        return wheel.getDiameter();
+        return wheel.diameter();
     }
 }

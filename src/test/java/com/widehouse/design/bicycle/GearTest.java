@@ -6,8 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.BDDAssertions.then;
 
 class GearTest {
-    private static final Wheel wheel = new Wheel(26, 2);
-    private static final Gear gear = Gear.builder().chainring(52.0).cog(11.0).wheel(wheel).build();
+    private static class DiameterDouble implements Diameterizable {
+        @Override
+        public double diameter() {
+            return 30.0;
+        }
+    }
+    private static final DiameterDouble diameterDouble = new DiameterDouble();
+    private static final Gear gear = Gear.builder().chainring(52.0).cog(11.0).wheel(diameterDouble).build();
 
     @Test
     @DisplayName("chainring 과 cog에 따라 기어비를 반환한다")
@@ -31,7 +37,7 @@ class GearTest {
     @DisplayName("Gear#builder default value test")
     void builderTest() {
         // when
-        Gear gear = Gear.builder().wheel(wheel).build();
+        Gear gear = Gear.builder().wheel(diameterDouble).build();
         // then
         then(gear)
                 .hasFieldOrPropertyWithValue("chainring", 40.0)

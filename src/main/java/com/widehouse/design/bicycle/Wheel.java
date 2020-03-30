@@ -5,15 +5,16 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Wheel {
+public class Wheel implements Diameterizable {
     private double rim;
     private double tire;
 
     public double getCircumference() {
-        return getDiameter() * Math.PI;
+        return diameter() * Math.PI;
     }
 
-    public double getDiameter() {
+    @Override
+    public double diameter() {
         return getRim() + getTire() * 2;
     }
 }

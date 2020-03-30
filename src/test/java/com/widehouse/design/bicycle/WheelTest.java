@@ -10,7 +10,7 @@ class WheelTest {
     @Test
     void diameterTest() {
         // when
-        double diameter = wheel.getDiameter();
+        double diameter = wheel.diameter();
         // then
         then(diameter).isEqualTo(26 + 2 * 2);
     }
